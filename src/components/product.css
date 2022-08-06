@@ -1,0 +1,7 @@
+.product {
+  border: 1px solid grey;
+  border-radius: 5px;
+  max-width: fit-content;
+  text-align: center;
+  margin: 10px;
+}
