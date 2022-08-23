@@ -1,0 +1,13 @@
+.about-me {
+  background-color: #9b5de5;
+  height: 8rem;
+}
+.about-me h2 {
+  color: aliceblue;
+}
+
+.about-me-button {
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: #00bbf9;
+}

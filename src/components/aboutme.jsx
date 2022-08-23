@@ -10,10 +10,12 @@ const AboutMe = () => {
 
   return (
     <div className="about-me">
-      <h4>Welcome</h4>
+      <h2>Welcome to Mark's Electronics!</h2>
       <h5>{name}</h5>
 
-      <button onClick={toggleName}>Show</button>
+      <button className="about-me-button" onClick={toggleName}>
+        Show
+      </button>
     </div>
   );
 };

@@ -9,4 +9,13 @@
   height: 320px;
   margin-bottom: 10px;
   margin-left: 10px;
+  padding: 5px;
+}
+
+.cat-btn {
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: #00bbf9;
+  padding: 2px;
+  margin: 5px;
 }
