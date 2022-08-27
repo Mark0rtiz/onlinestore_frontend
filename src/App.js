@@ -9,6 +9,7 @@ import Catalog from "./components/catalog";
 import ShoppingList from "./components/shoppinglist";
 import Cart from "./components/cart";
 import Admin from "./components/admin";
+import GlobalState from "./store/globalState";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -18,20 +19,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavBar />
-        <div className="main">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/about" element={<AboutMe />} />
-            <Route path="/list" element={<ShoppingList />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </div>
-        <Footer></Footer>
-      </BrowserRouter>
+      <GlobalState>
+        <BrowserRouter>
+          <NavBar />
+          <div className="main">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/about" element={<AboutMe />} />
+              <Route path="/list" element={<ShoppingList />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </div>
+          <Footer></Footer>
+        </BrowserRouter>
+      </GlobalState>
     </div>
   );
 }
