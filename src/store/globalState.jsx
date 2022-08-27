@@ -6,10 +6,20 @@ const GlobalState = (props) => {
   const [user, setUser] = useState({});
 
   const addToCart = (prod) => {
-    console.log("adding to cart..");
-
     let copy = [...cart];
-    copy.push(prod);
+
+    let exist = false;
+
+    for (let i = 0; i < cart.length; i++) {
+      let item = cart[i];
+      if (item._id === prod._id) {
+        exist = true;
+        item.quantity += prod.quantity;
+      }
+    }
+    if (!exist) {
+      copy.push(prod);
+    }
     setCart(copy);
   };
 

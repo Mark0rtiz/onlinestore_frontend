@@ -8,7 +8,9 @@ const Product = (props) => {
   const addToCart = useContext(StoreContext).addToCart;
 
   const handleAddClicked = () => {
-    addToCart(props.data);
+    let propCopy = { ...props.data, quantity: quantity };
+
+    addToCart(propCopy);
   };
 
   const onQuantityChange = (quantity) => {
