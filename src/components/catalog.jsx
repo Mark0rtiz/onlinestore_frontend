@@ -1,6 +1,5 @@
 import "./catalog.css";
 import Product from "./product";
-
 import { useEffect, useState } from "react";
 import DataService from "../services/dataService";
 
@@ -8,9 +7,9 @@ const Catalog = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  const loadData = () => {
+  const loadData = async () => {
     let service = new DataService(); //instance of the class
-    let prods = service.getCatalog();
+    let prods = await service.getCatalog();
     setProducts(prods);
 
     let uniques = [];

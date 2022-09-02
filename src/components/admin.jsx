@@ -1,14 +1,33 @@
 import "./admin.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import DataService from "../services/dataService";
 
 const Admin = () => {
   const [product, setProduct] = useState({});
   const [coupon, setCoupon] = useState({});
+  const [showProdSuccess, setShowProdSuccess] = useState(false);
 
-  const saveProduct = () => {
+  const saveProduct = async () => {
     console.log("saving product...");
     console.log(product);
+
+    //use the service to send it to the server
+
+    let fixProd = { ...product };
+    fixProd.price = parseFloat(fixProd.price);
+
+    let service = new DataService();
+    let savedProd = await service.saveProduct(product);
+
+    if (savedProd && savedProd._id) {
+      setShowProdSuccess(true);
+
+      setTimeout(() => {
+        setShowProdSuccess(false);
+      }, 2000);
+    }
+    console.log(saveProduct);
   };
 
   const textChange = (e) => {
@@ -36,6 +55,11 @@ const Admin = () => {
   return (
     <div className="admin">
       <h1>Admin</h1>
+
+      {showProdSuccess ? (
+        <div className="alert alert-success">Product Saved</div>
+      ) : null}
+
       <div className="parent">
         <section className="products">
           <h3>Register Products</h3>
