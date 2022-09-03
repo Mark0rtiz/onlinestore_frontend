@@ -1,6 +1,5 @@
 import "./admin.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DataService from "../services/dataService";
 
 const Admin = () => {
@@ -39,7 +38,15 @@ const Admin = () => {
     setProduct(copy);
   };
 
-  const couponCode = (e) => {
+  const saveCoupon = () => {
+    let copy = { ...coupon };
+    copy.discount = parseFloat(copy.discount);
+
+    let service = new DataService();
+    service.saveCoupon(copy);
+  };
+
+  const couponChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
 
@@ -48,9 +55,15 @@ const Admin = () => {
     setCoupon(copy);
   };
 
-  const discountProduct = (e) => {
-    console.log(coupon);
+  const loadCoupons = async () => {
+    let service = new DataService();
+    let allCoupons = await service.getCoupons();
+    console.log(allCoupons);
   };
+
+  useEffect(() => {
+    loadCoupons();
+  }, []);
 
   return (
     <div className="admin">
@@ -96,19 +109,16 @@ const Admin = () => {
 
           <div className="my-form">
             <label>Discount</label>
-            <input name="discount" onChange={couponCode} type="number" />
+            <input name="discount" onChange={couponChange} type="number" />
           </div>
 
           <div className="my-form">
             <label>Code</label>
-            <input name="code" onChange={couponCode} type="text" />
+            <input name="code" onChange={couponChange} type="text" />
           </div>
 
           <div className="my-form">
-            <button
-              onClick={discountProduct}
-              className="btn btn-sm btn-primary"
-            >
+            <button onClick={saveCoupon} className="btn btn-sm btn-primary">
               Save Coupon
             </button>
           </div>
